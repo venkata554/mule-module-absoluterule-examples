@@ -1,0 +1,21 @@
+--
+-- Rules for the transaction model
+--
+-- These are all rules that cannot be expressed in XML Schema.
+--
+
+Model "../../models/transactions.xsd"
+
+Rule Set "Transaction Rules"
+
+Context: Transaction
+Validation Rule "r1"
+If the type is one of 'STANDINGORDER', 'BANKFEE' then the amount is less than 0
+
+Context: Transactions
+Validation Rule "r2"
+startBalance + the sum of transaction.amount = endBalance
+ 
+Context: Transactions
+Validation Rule "r3"
+Each of the transaction elements has a date less than or equal to Transactions.statementDate

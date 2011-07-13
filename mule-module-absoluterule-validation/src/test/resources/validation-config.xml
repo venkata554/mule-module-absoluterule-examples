@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<mule xmlns="http://www.mulesoft.org/schema/mule/core" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:absoluterule="http://www.mulesoft.org/schema/mule/absoluterule"
+    xmlns:vm="http://www.mulesoft.org/schema/mule/vm"
+    xmlns:mulexml="http://www.mulesoft.org/schema/mule/xml"
+    xsi:schemaLocation="
+        http://www.mulesoft.org/schema/mule/core http://www.mulesoft.org/schema/mule/core/3.1/mule.xsd
+        http://www.mulesoft.org/schema/mule/absoluterule http://www.mulesoft.org/schema/mule/absoluterule/3.1/mule-absoluterule.xsd
+        http://www.mulesoft.org/schema/mule/vm http://www.mulesoft.org/schema/mule/vm/3.1/mule-vm.xsd
+        http://www.mulesoft.org/schema/mule/xml http://www.mulesoft.org/schema/mule/xml/3.1/mule-xml.xsd
+        ">
+
+    <mulexml:jaxb-context name="jaxbContext" packageNames="com.democompany.models.transactions"/>
+    
+    <flow name="validateXML">
+        <vm:inbound-endpoint path="in" />
+
+        <mulexml:jaxb-xml-to-object-transformer name="XmlToTrade" jaxbContext-ref="jaxbContext"/>
+        
+        <enricher target="#[header:INVOCATION:validationResult]">
+            <absoluterule:validation ruleSetClasses="com.democompany.rules.transactionvalidation.RuleSetTransactionRules" />
+        </enricher>
+        
+        <choice>
+            <when evaluator="groovy" expression="message.getInvocationProperty('validationResult').isEmpty()">
+                <vm:outbound-endpoint path="out" />
+            </when>
+            <otherwise>
+                <vm:outbound-endpoint path="error" />
+            </otherwise>
+        </choice>
+    </flow>
+
+</mule>

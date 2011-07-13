@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema">
+
+    <xs:element name="transactions" type="Transactions"/>
+    <xs:complexType name="Transactions">
+        <xs:sequence>
+            <xs:element maxOccurs="unbounded" minOccurs="0" name="transaction" type="Transaction"/>
+            <xs:element name="startBalance" type="xs:decimal"/>
+            <xs:element name="endBalance" type="xs:decimal"/>
+            <xs:element name="statementDate" type="xs:date"/>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="Transaction">
+        <xs:sequence>
+            <xs:element name="date" type="xs:date"/>
+            <xs:element name="amount" type="xs:decimal"/>
+            <xs:element name="type" type="xs:string"/>
+        </xs:sequence>
+    </xs:complexType>
+</xs:schema>

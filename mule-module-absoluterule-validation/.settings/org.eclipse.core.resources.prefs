@@ -1,0 +1,11 @@
+#Fri Jul 08 12:58:09 BST 2011
+eclipse.preferences.version=1
+encoding//rules/general/transation-validation.nrl=UTF-8
+encoding//src/generated-main/java/com/democompany/models/transactions/ObjectFactory.java=UTF-8
+encoding//src/generated-main/java/com/democompany/models/transactions/Transaction.java=UTF-8
+encoding//src/generated-main/java/com/democompany/models/transactions/Transactions.java=UTF-8
+encoding//src/generated-main/java/com/democompany/rules/transactionvalidation/R1.java=UTF-8
+encoding//src/generated-main/java/com/democompany/rules/transactionvalidation/R2.java=UTF-8
+encoding//src/generated-main/java/com/democompany/rules/transactionvalidation/R3.java=UTF-8
+encoding//src/generated-main/java/com/democompany/rules/transactionvalidation/RuleSetTransactionRules.java=UTF-8
+encoding/Type\ Registry.xml=UTF-8
